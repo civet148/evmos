@@ -71,3 +71,14 @@ func SetEvmChainIDs(testnet, mainnet int64) {
 	EvmChainID_Testnet = testnet
 	EvmChainID_Mainnet = mainnet
 }
+
+func IsMainnet(chainID string) bool {
+	cid, err := ParseChainID(chainID)
+	if err != nil {
+		panic(err.Error())
+	}
+	if cid.Int64() == EvmChainID_Mainnet {
+		return true
+	}
+	return false
+}
